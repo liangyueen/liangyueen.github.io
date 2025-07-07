@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浪漫心意 - 给最爱的你</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffd6e7, #c2e9fb, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #5a3d5c;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b9d;
+            transform: rotate(45deg);
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .heart:before, .heart:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b9d;
+            border-radius: 50%;
+        }
+        
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(45deg); }
+            50% { transform: translateY(-20px) rotate(45deg); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #ff4081;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #7e57c2;
+        }
+        
+        .quote-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-container:before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 8rem;
+            color: rgba(255, 105, 180, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        .quote {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: #e91e63;
+            margin: 20px 0;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+        }
+        
+        .new-quote {
+            background: linear-gradient(to right, #ff6b9d, #ff4081);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
+        }
+        
+        .new-quote:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 64, 129, 0.4);
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 25px;
+            flex: 1;
+            min-width: 250px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card h3 {
+            color: #7e57c2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-card h3 i {
+            margin-right: 10px;
+            color: #ff4081;
+        }
+        
+        .memories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .memory {
+            height: 150px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff4081;
+            font-size: 3rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .wish-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .wish-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .wish-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .wish-list li i {
+            margin-right: 10px;
+            color: #ff4081;
+        }
+        
+        .message-form textarea {
+            width: 100%;
+            height: 120px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 1rem;
+            resize: none;
+            margin: 15px 0;
+            transition: border-color 0.3s;
+        }
+        
+        .message-form textarea:focus {
+            outline: none;
+            border-color: #ff4081;
+        }
+        
+        .send-message {
+            background: linear-gradient(to right, #7e57c2, #5e35b1);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(126, 87, 194, 0.3);
+        }
+        
+        .send-message:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(126, 87, 194, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+            color: #7e57c2;
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(255,255,255,0.5);
+        }
+        
+        .love-note {
+            font-size: 1.3rem;
+            color: #ff4081;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .deploy-guide {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .deploy-guide h2 {
+            color: #ff4081;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .deploy-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .step-card {
+            background: #f8f8f8;
+            border-radius: 15px;
+            padding: 20px;
+            flex: 1;
+            min-width: 300px;
+            border-left: 4px solid #ff4081;
+        }
+        
+        .step-card h3 {
+            color: #7e57c2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-card h3 i {
+            margin-right: 10px;
+            color: #ff4081;
+        }
+        
+        .step-card code {
+            background: #e9e9e9;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            display: block;
+            margin: 10px 0;
+        }
+        
+        .method-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .method-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .method-tab.active {
+            border-bottom: 3px solid #ff4081;
+            color: #ff4081;
+            font-weight: bold;
+        }
+        
+        .method-content {
+            display: none;
+        }
+        
+        .method-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .quote {
+                font-size: 1.4rem;
+            }
+            
+            .features {
+                flex-direction: column;
+            }
+            
+            .deploy-steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <header>
+            <h1>❤️ 浪漫心意 ❤️</h1>
+            <p class="subtitle">给我最爱的你，每一天都因你而美好</p>
+        </header>
+        
+        <div class="quote-container">
+            <div class="quote" id="quote">点击按钮，给你一句甜甜的情话</div>
+            <button class="new-quote" id="new-quote">新的情话 💌</button>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3><i class="fas fa-heart"></i> 我们的甜蜜回忆</h3>
+                <p>珍藏我们美好的每一刻，这些记忆是我最宝贵的财富</p>
+                <div class="memories">
+                    <div class="memory">📸</div>
+                    <div class="memory">🌹</div>
+                    <div class="memory">🎂</div>
+                    <div class="memory">🌅</div>
+                    <div class="memory">🍿</div>
+                    <div class="memory">🎁</div>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <h3><i class="fas fa-star"></i> 我的心愿清单</h3>
+                <p>想和你一起完成的浪漫事情</p>
+                <ul class="wish-list">
+                    <li><i class="fas fa-check-circle"></i> 一起看日出</li>
+                    <li><i class="fas fa-check-circle"></i> 海边漫步</li>
+                    <li><i class="fas fa-circle"></i> 去迪士尼乐园</li>
+                    <li><i class="fas fa-circle"></i> 看极光</li>
+                    <li><i class="fas fa-circle"></i> 一起学跳舞</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3><i class="fas fa-envelope"></i> 甜蜜留言</h3>
+                <p>写下你想对我说的话，我会用心珍藏</p>
+                <div class="message-form">
+                    <textarea placeholder="亲爱的，我想对你说..."></textarea>
+                    <button class="send-message">发送心意 💖</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="deploy-guide">
+            <h2><i class="fas fa-cloud-upload-alt"></i> 部署到你的博客指南</h2>
+            <p style="text-align: center; margin-bottom: 20px;">将这份浪漫心意添加到你的博客中</p>
+            
+            <div class="method-tabs">
+                <div class="method-tab active" data-target="method1">作为独立页面</div>
+                <div class="method-tab" data-target="method2">嵌入到文章</div>
+            </div>
+            
+            <div class="method-content active" id="method1">
+                <div class="deploy-steps">
+                    <div class="step-card">
+                        <h3><i class="fas fa-file-code"></i> 步骤 1: 创建HTML文件</h3>
+                        <p>在你的博客项目根目录中创建新文件：</p>
+                        <code>romantic.html</code>
+                        <p>将本页面的完整HTML代码复制到该文件中</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <h3><i class="fab fa-github"></i> 步骤 2: 上传到GitHub</h3>
+                        <p>使用Git命令上传文件：</p>
+                        <code>git add romantic.html</code>
+                        <code>git commit -m "添加浪漫心意页面"</code>
+                        <code>git push origin main</code>
+                    </div>
+                    
+                    <div class="step-card">
+                        <h3><i class="fas fa-link"></i> 步骤 3: 访问页面</h3>
+                        <p>文件上传后，访问以下URL：</p>
+                        <code>https://liangyueen.github.io/romantic.html</code>
+                        <p>在博客中添加导航链接：</p>
+                        <code>&lt;a href="/romantic.html"&gt;浪漫心意&lt;/a&gt;</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="method-content" id="method2">
+                <div class="deploy-steps">
+                    <div class="step-card">
+                        <h3><i class="fas fa-code"></i> 步骤 1: 创建文章</h3>
+                        <p>在你的博客系统中创建新文章</p>
+                        <p>在Markdown编辑器中添加HTML块：</p>
+                        <code>```html</code>
+                        <code>&lt;!-- 浪漫心意网页代码 --&gt;</code>
+                        <code>...完整HTML代码...</code>
+                        <code>```</code>
+                    </div>
+                    
+                    <div class="step-card">
+                        <h3><i class="fas fa-cog"></i> 步骤 2: 调整样式</h3>
+                        <p>如果博客主题有样式冲突：</p>
+                        <p>1. 在HTML代码的style标签中添加</p>
+                        <code>body .container { all: unset; }</code>
+                        <p>2. 确保父容器有足够宽度</p>
+                        <p>3. 检查z-index确保元素正常显示</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <h3><i class="fas fa-rocket"></i> 步骤 3: 发布文章</h3>
+                        <p>保存并发布文章</p>
+                        <p>访问你的博客文章URL：</p>
+                        <code>https://liangyueen.github.io/posts/romantic</code>
+                        <p>现在浪漫心意页面已嵌入到博客文章中</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>用心制作的每一刻，都是爱你的证明</p>
+            <p class="love-note">永远爱你！ ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        // 创建漂浮的心形
+        const heartsContainer = document.getElementById('hearts');
+        for (let i = 0; i < 25; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            heart.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+            heartsContainer.appendChild(heart);
+        }
+        
+        // 情话库
+        const quotes = [
+            "你的笑容是我每天最期待的阳光",
+            "遇见你，是我这辈子最美丽的意外",
+            "想牵你的手，从心动到古稀",
+            "你是我平淡生活里的来日方长",
+            "世界很大，我的眼里只有你",
+            "和你在一起的时光都很耀眼",
+            "你是我最想留住的幸运",
+            "春风十里，不如有你",
+            "余生很长，想和你一起慢慢走",
+            "你是我最温暖的港湾",
+            "有你在身边，风都是甜的",
+            "我的世界因为你而变得完整",
+            "爱你是我做过最正确的事",
+            "你的名字是我写过最美的情书",
+            "你一笑，我的世界都亮了",
+            "想和你一起，看遍世间美好",
+            "你是我今生最美的风景",
+            "我的心事，只想说给你听",
+            "和你在一起的每一天都是情人节",
+            "你让平凡的日子闪闪发光"
+        ];
+        
+        const quoteElement = document.getElementById('quote');
+        const newQuoteBtn = document.getElementById('new-quote');
+        
+        // 显示随机情话
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.textContent = quotes[randomIndex];
+            
+            // 添加动画效果
+            quoteElement.style.opacity = 0;
+            setTimeout(() => {
+                quoteElement.style.transition = 'opacity 0.5s ease';
+                quoteElement.style.opacity = 1;
+            }, 10);
+        }
+        
+        // 初始显示一句情话
+        showRandomQuote();
+        
+        // 按钮点击事件
+        newQuoteBtn.addEventListener('click', showRandomQuote);
+        
+        // 添加发送按钮功能
+        const sendMessageBtn = document.querySelector('.send-message');
+        const messageTextarea = document.querySelector('textarea');
+        
+        sendMessageBtn.addEventListener('click', function() {
+            const message = messageTextarea.value.trim();
+            if (message) {
+                alert('亲爱的，收到你的心意了！❤️\n\n你说: "' + message + '"\n\n我会永远珍藏！');
+                messageTextarea.value = '';
+            } else {
+                alert('请写下你想对我说的话吧~');
+            }
+        });
+        
+        // 心愿清单点击效果
+        const wishItems = document.querySelectorAll('.wish-list li');
+        wishItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-circle')) {
+                    icon.classList.remove('fa-circle');
+                    icon.classList.add('fa-check-circle');
+                    icon.style.color = '#4CAF50';
+                } else {
+                    icon.classList.remove('fa-check-circle');
+                    icon.classList.add('fa-circle');
+                    icon.style.color = '#ff4081';
+                }
+            });
+        });
+        
+        // 部署指南标签切换
+        const methodTabs = document.querySelectorAll('.method-tab');
+        methodTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有活动标签
+                methodTabs.forEach(t => t.classList.remove('active'));
+                // 隐藏所有内容
+                document.querySelectorAll('.method-content').forEach(c => c.classList.remove('active'));
+                
+                // 激活当前标签
+                this.classList.add('active');
+                // 显示对应内容
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
